@@ -4,7 +4,7 @@ var deb;
   'use strict';
   var jsonData;
 var svg;
-  d3.json('data/data.json',function (error, json) {
+  d3.json('data/data.json?v2',function (error, json) {
     jsonData = json;
     deb=jsonData;
     getMax();
@@ -18,26 +18,26 @@ var svg;
   function raster() {
     var w = 600;
     var h = 400;
-    var rectW = 10;
-    var rectH = 10;
+    var rectW = 20;
+    var rectH = 20;
     var rectPadding = 3;
-    var labelPadding = 80;
+    var labelPadding = 200;
     var padding = 15;
     var scale = d3.scale.linear();
     scale.domain([0,getMax()]);
-    scale.range([0,255]);
+    scale.range([0,270]);
 
     svg = d3.select('#graph')
       .append('svg')
       .attr('width', w)
       .attr('height',h);
-    svg.append('line')
+    /*svg.append('line')
     .attr('x1',120)
     .attr('y1',0)
     .attr('x2',120)
     .attr('y2',120)
     .attr('stroke','#000')
-    .attr('stroke-width',3);
+    .attr('stroke-width',3);*/
     var g = svg.selectAll('g')
       .data(jsonData).enter().append('g');
 
@@ -75,7 +75,8 @@ var svg;
     .attr('width',rectW)
     .attr('height',rectH)
     .attr('fill',function(d){
-      return 'rgb('+scale(d)+',0,0)';
+      //return d3.hsl(scale(d),1,.5).rgb();
+      return 'hsl('+scale(d)+',100%,50%)';
     })
 .on('mouseover',function(d,u,i) {
   console.log(jsonData[i].name,d);
