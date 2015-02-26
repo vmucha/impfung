@@ -12,7 +12,7 @@ var svg;
   });
 
   function getMax() {
-    return 40;
+    return 2223;
   }
 
   function raster() {
@@ -76,7 +76,7 @@ var svg;
     .attr('height',rectH)
     .attr('fill',function(d){
       //return d3.hsl(scale(d),1,.5).rgb();
-      return 'hsl('+scale(d)+',100%,50%)';
+      return 'hsl('+(270-scale(d))+',100%,50%)';
     })
 .on('mouseover',function(d,u,i) {
   console.log(jsonData[i].name,d);
